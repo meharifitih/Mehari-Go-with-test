@@ -1,5 +1,9 @@
 package main
 
+func main() {
+
+}
+
 func sum(numbers []int) int {
 	sum := 0
 	for _, number := range numbers {
@@ -7,20 +11,23 @@ func sum(numbers []int) int {
 	}
 	return sum
 }
-func sumAll(numbersToSum ...[]int) []int {
+func sumAllTails(numbersToSum ...[]int) []int {
 	var sums []int
 	for _, numbers := range numbersToSum {
-		sums = append(sums, sum(numbers))
+		if len(numbers) == 0 {
+			sums = append(sums, 0)
+		} else {
+			tail := numbers[1:]
+			sums = append(sums, sum(tail))
+		}
 	}
 	return sums
 }
 
 // func sumAll(numbersToSum ...[]int) []int {
-// 	lengthOfNumbers := len(numbersToSum)
-// 	sums := make([]int, lengthOfNumbers)
-
-// 	for i, numbers := range numbersToSum {
-// 		sums[i] = sum(numbers)
+// 	var sums []int
+// 	for _, numbers := range numbersToSum {
+// 		sums = append(sums, sum(numbers))
 // 	}
 // 	return sums
 // }
@@ -32,7 +39,3 @@ func sumAll(numbersToSum ...[]int) []int {
 // 	}
 // 	return sum
 // }
-
-func main() {
-	// fmt.Println(sum([5]int{1, 2, 3, 4, 5}))
-}
